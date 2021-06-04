@@ -1,0 +1,108 @@
+@import '../../../theme.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 9px;
+  & .mat-icon {
+    cursor: pointer;
+  }
+  & span {
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+.earners-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  & .group {
+    box-sizing: border-box;
+    padding: 0px 40px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    & * {
+      margin-right: 40px;
+    }
+    // position: relative;
+    &.g3 {
+      justify-content: space-around;
+      & .radio-group {
+        display: flex;
+        flex-direction: column;
+        // position: absolute;
+        // left: 0px;
+        width: 40%;
+        & .radio-btn {
+          margin-bottom: 10px;
+        }
+      }
+      & .empty-div {
+       width: 40%; 
+      }
+    }
+    
+    & .mat-form-field {
+      width: 40%;
+    }
+    & .type-container {
+      width: 40%;
+      &>span {
+          font-weight: 700;
+          font-size: 16px;
+      }
+    }
+    & .type-input {
+      width: 100%;
+    }
+  }
+}
+
+.save-btn-container{
+    margin-top: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0px 40px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  & button {
+    background-color: $primary;
+    color: white;
+    border-radius: 7px !important;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-bottom: 25px;
+    padding: 0px 30px !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+    .header > span {
+        font-size: 16px;
+    }
+  .group {
+    flex-direction: column;
+    & .radio-group {
+      width: 90% !important;
+      margin: 0px 12px !important;
+    }
+    & .mat-form-field {
+      width: 90% !important;
+      margin: 0px 12px !important;
+    }
+    & .type-container {
+      width: 90% !important;
+      margin: 0px 25px !important;
+    }
+  }
+}

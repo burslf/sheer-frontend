@@ -1,0 +1,55 @@
+<div *ngIf="token" class="logged-in">
+  <h3>You are logged in</h3>
+  <div class="buttons">
+    <button mat-stroked-button color="primary"  routerLink="/">Go back</button>
+    <button mat-stroked-button color="primary" routerLink="/admin">Dashboard</button>
+    <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="form-container">
+  <form
+    *ngIf="!token"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="login-form"
+  >
+    <h1 class="login-title">CONNEXION</h1>
+    <mat-form-field appearance="outline">
+      <input
+        type="email"
+        matInput
+        placeholder="Email"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input-container">
+      <input
+        type="password"
+        matInput
+        placeholder="Password"
+        formControlName="password"
+      />
+      <mat-error *ngIf="form.controls.password.errors?.required"
+        >Password is required</mat-error
+      >
+      <mat-error *ngIf="form.controls.password.hasError('minlength')"
+        >Password isn't long enough, minimum of 6 characters</mat-error
+      >
+    </mat-form-field>
+    <mat-error>{{ errors.message }}</mat-error>
+    <button mat-stroked-button color="primary" class="submit-btn" type="submit">
+      SIGN IN
+    </button>
+    <button mat-button type="button" (click)="loginWithGoogle()">
+      <div class="google-icon">
+        <img src="../../../assets/images/google-icon.svg" alt="" />
+      </div>
+    </button>
+    <a class="swap-link" mat-button routerLink="/register"
+      >No account? Sign up now</a
+    >
+  </form>
+</div>
+
+<mat-spinner *ngIf="isLoading" class="loading"></mat-spinner>

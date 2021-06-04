@@ -1,0 +1,14 @@
+@import '../../../styles.scss';
+
+.app-home:host{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    & h3,p,span {
+        color: #ffffff
+    }
+    
+}
+

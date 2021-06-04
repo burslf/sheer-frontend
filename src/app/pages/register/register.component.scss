@@ -1,0 +1,51 @@
+.app-register:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    overflow-y: scroll;
+    & .form-container{
+        display: flex;
+        width: 80%;
+        max-width: 600px;
+    }
+}
+
+.register-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    width: 100%;
+    & .submit-btn {
+      margin-bottom: 27px;
+      font-size: 19px;
+      padding: 0px 12px !important;
+    } 
+    & .mat-form-field {
+      width: 95% !important;
+      // color: #bebebe !important;
+    }
+    & .register-title {
+      // color: #bebebe;
+      font-weight: 500;
+    }
+  }
+  .google-icon > img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  ::ng-deep {
+      .mat-form-field-appearance-outline .mat-form-field-outline {
+         color: white;
+      }
+      mat-form-field {
+         .mat-hint, input, ::placeholder, .mat-form-field-label {
+            color: white !important;
+         }
+      }
+   }
