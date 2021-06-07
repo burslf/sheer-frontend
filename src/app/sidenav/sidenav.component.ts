@@ -19,8 +19,9 @@ interface Menu {
 export class SidenavComponent implements OnInit {
   public menu: Menu[] = [
     {name: 'Home', path: '', class:'selected'},
-    {name: 'Earners', path: 'earners', class:''},
+    // {name: 'Earners', path: 'earners', class:''},
     {name: 'Login', path: 'login', class:''},
+    
   ]
   isMobile!: boolean;
 
@@ -38,8 +39,10 @@ export class SidenavComponent implements OnInit {
   logout() {
     Auth.signOut()
     .then(r => {
-      this.cookie.delete('token')
-      this.router.navigate(['/login'])
+      this.cookie.delete('access_token')
+      this.cookie.delete('code')
+      this.context.setSpotify(false, null)
+      this.router.navigate(['/'])
       this.toggleSidenav()
     })
     .catch(e => console.log(e))

@@ -1,3 +1,4 @@
+import { AuthCloseAPIComponent } from './pages/auth-close-api/auth-close-api.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewEarnerComponent } from './pages/new-earner/new-earner.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'earners', component: EarnersComponent },
       { path: 'new-earner', component: NewEarnerComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'authCloseAPI', component: AuthCloseAPIComponent}
     ],
   },
 ];

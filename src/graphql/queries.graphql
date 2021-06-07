@@ -1,0 +1,14 @@
+# this is an auto generated file. This will be overwritten
+query GetUserById($clientId: ID!) {
+  getUserById(clientId: $clientId) {
+    client_id
+    email
+    first_name
+    last_name
+  }
+}
+query GetSpotifyAuth {
+  getSpotifyAuth {
+    auth_endpoint
+  }
+}

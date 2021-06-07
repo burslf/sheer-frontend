@@ -1,0 +1,6 @@
+type Query {
+  getUserById(clientId: ID!): User
+    @function(name: "SheerAPIoperations-${env}")
+  getSpotifyAuth: AuthEndpointResponse
+    @function(name: "SheerAPIoperations-${env}")
+}

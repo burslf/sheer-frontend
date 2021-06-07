@@ -1,3 +1,4 @@
+import { ContextService } from 'src/app/services/context.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppMaterialModule } from './app-material/app-material.module';
@@ -16,6 +17,8 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidenavService } from './services/sidenav.service';
 import { EarnersComponent } from './pages/earners/earners.component';
+import { AuthCloseAPIComponent } from './pages/auth-close-api/auth-close-api.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { EarnersComponent } from './pages/earners/earners.component';
     NewEarnerComponent,
     ProfileComponent,
     EarnersComponent,
+    AuthCloseAPIComponent,
   ],
   imports: [
     AppMaterialModule,
@@ -37,9 +41,10 @@ import { EarnersComponent } from './pages/earners/earners.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
+    HttpClientModule
   ],
-  providers: [SidenavService],
+  providers: [SidenavService, ContextService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

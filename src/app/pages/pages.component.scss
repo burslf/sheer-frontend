@@ -2,8 +2,8 @@
 
 .sidenav-container {
   width: 100%;
-  height: calc(100% - #{$toolbar-height});
-  // background-color: #22222b;
+  height: 100%;
+  background-color: $accent;
   position: relative;
   & * {
     box-sizing: border-box;
@@ -27,7 +27,7 @@
     position: relative;
     & .container {
       position: absolute;
-      height: 100%;
+      // height: 100%;
       width: 100%;
     }
   }

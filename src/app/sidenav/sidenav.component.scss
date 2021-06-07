@@ -7,6 +7,11 @@
     width: 100%;
     background-color: transparent;
     height: 100%;
+    & .menu-header {
+        height: $toolbar-height;
+        width: 100%;
+        background-color: $primary
+    }
     & .menu-content {
         height: calc(100% - #{$toolbar-height});
         width: 100%;

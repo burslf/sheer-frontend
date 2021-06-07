@@ -1,0 +1,37 @@
+# this is an auto generated file. This will be overwritten
+mutation Signup($clientId: String!, $email: String!) {
+  signup(clientId: $clientId, email: $email) {
+    user {
+      client_id
+      email
+      first_name
+      last_name
+    }
+    token
+  }
+}
+mutation Login($clientId: String!) {
+  login(clientId: $clientId) {
+    token
+  }
+}
+mutation UpdateUser($clientId: String!, $payload: String!) {
+  updateUser(clientId: $clientId, payload: $payload) {
+    client_id
+    email
+    first_name
+    last_name
+  }
+}
+mutation GetSpotifyAccessToken($code: String!) {
+  getSpotifyAccessToken(code: $code) {
+    data {
+      access_token
+      token_type
+      expires_in
+      refresh_token
+      scope
+    }
+    status
+  }
+}

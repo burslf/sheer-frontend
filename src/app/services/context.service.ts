@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,10 +7,22 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ContextService {
   isMobile: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  spotifyConnect: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  spotifyAccessToken: BehaviorSubject<string|null> = new BehaviorSubject<string|null>(null);
 
-  constructor() { }
-
+  constructor(private cookie: CookieService) {
+    const access_token = this.cookie.get('access_token')
+    if(access_token) {
+      this.setSpotify(true, access_token)
+    }
+  }
+  
   setMobile(value: boolean) {
     this.isMobile.next(value);
+  }
+
+  setSpotify(value: boolean, token:string|null) {
+    this.spotifyConnect.next(value);
+    this.spotifyAccessToken.next(token);
   }
 }

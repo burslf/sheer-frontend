@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIService, User } from '../API.service';
@@ -19,4 +20,5 @@ export class AuthService {
   signup(clientId: string, email: string) {
     return this.api.Signup(clientId, email);
   }
+
 }

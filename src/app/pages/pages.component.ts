@@ -20,7 +20,7 @@ export class PagesComponent implements OnInit {
   ngOnInit(): void {
     this.sidenavService.setSidenav(this.sidenav);
       this.breakpointObserver.observe([
-        '(max-width: 500px)'
+        '(max-width: 700px)'
       ]).subscribe(result => {
         if(result.matches) {
           this.sidenav.mode = 'over'

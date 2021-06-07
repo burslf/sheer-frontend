@@ -1,4 +1,7 @@
 <div class="menu-container">
+  <div class="menu-header">
+    
+  </div>
   <div class="menu-content">
     <ul class="list">
         <li class="{{name.class}}" *ngFor="let name of menu" (click)="handleSelect(name)">
@@ -8,11 +11,11 @@
 
           </div>
         </li>
-        <!-- <li >
+        <li >
           <div class="name" (click)="logout()">
             Logout
           </div>
-        </li> -->
+        </li>
     </ul>
   </div>
 </div>
