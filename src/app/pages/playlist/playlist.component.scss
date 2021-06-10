@@ -32,7 +32,16 @@
             }
         }
     }
-    & .lyrics {
-        
+    & .lyrics-container {
+        display: flex;
+        justify-content: center;
+        .lyrics-loading{
+
+        }
+        .lyrics {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
+

@@ -12,12 +12,13 @@
                 {{track.title}}
             </span>
             <div>
-                <button mat-button (click)="showLyrics(track.artist, track.title)"> LYRICS</button>
+                <button *ngIf="isLyricsLoading.artist !== track.artist && isLyricsLoading.title !== track.title" mat-button (click)="showLyrics(track.artist, track.title)"> LYRICS</button>
             </div>
         </div>
     </div>
-    <div class="lyrics">
-        <div *ngIf="openedTrack.title == track.title && openedTrack.artist == track.artist">
+    <div class="lyrics-container">
+        <mat-spinner *ngIf="isLyricsLoading.artist == track.artist && isLyricsLoading.title == track.title" class="lyrics-loading"></mat-spinner>
+        <div *ngIf="openedTrack.title == track.title && openedTrack.artist == track.artist" class="lyrics">
             <div *ngFor="let row of openedTrack.lyrics">
                 <div>
                     {{row}}

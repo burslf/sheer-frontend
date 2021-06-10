@@ -1,4 +1,4 @@
 export const environment = {
-  api: 'https://ioel.dev/authCloseAPI',
+  api: 'https://main.dxlci0dzp0dy7.amplifyapp.com/authCloseAPI',
   production: true
 };
