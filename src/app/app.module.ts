@@ -19,6 +19,9 @@ import { SidenavService } from './services/sidenav.service';
 import { EarnersComponent } from './pages/earners/earners.component';
 import { AuthCloseAPIComponent } from './pages/auth-close-api/auth-close-api.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PlaylistComponent } from './pages/playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     EarnersComponent,
     AuthCloseAPIComponent,
+    PlaylistComponent,
   ],
   imports: [
     AppMaterialModule,
@@ -42,7 +46,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AmplifyUIAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [SidenavService, ContextService],
   bootstrap: [AppComponent]

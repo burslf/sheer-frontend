@@ -4,6 +4,7 @@ const updateUser = require('./mutation/modules/user/updateUser')
 const getUserById = require('./query/modules/user/getById')
 const getSpotifyAuth = require('./query/modules/user/getSpotifyAuth')
 const getSpotifyAccessToken = require('./mutation/modules/user/getSpotifyAccessToken')
+const getLyrics = require('./query/modules/lyrics/getLyrics')
 
 const resolvers = {
     Query: {
@@ -12,6 +13,9 @@ const resolvers = {
         },
         getSpotifyAuth: async (event) => {
             return await getSpotifyAuth(event)
+        },
+        getLyrics: async (event) => {
+            return await getLyrics(event)
         }
     },
     Mutation: {

@@ -1,10 +1,13 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { APIService } from 'src/app/API.service';
 import { ContextService } from 'src/app/services/context.service';
+import { environment } from '../../../environments/environment'
 
 const SPOTIFY_API = 'https://api.spotify.com/v1/'
+const redirectUri = environment.api!
 
 @Component({
   selector: 'app-home',
@@ -18,10 +21,10 @@ export class HomeComponent implements OnInit {
   accessToken: string | null = null
   spotifyConnect!: boolean;
   interval:any;
-  playlists!:[any]
+  playlists!: any[]
   user!:any
   headers:any = {'Authorization' : ''}
-  constructor(private api: APIService, private cookie: CookieService, private context: ContextService, private http: HttpClient) {}
+  constructor(private api: APIService, private router:Router, private cookie: CookieService, private context: ContextService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.context.spotifyConnect.subscribe(r => this.spotifyConnect = r)
@@ -35,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   connectSpotify() {
     this.api
-      .GetSpotifyAuth()
+      .GetSpotifyAuth(redirectUri)
       .then((r) => {
         window.open(r.auth_endpoint, 'newwindow', 'width=300,height=400');
         this.interval = setInterval(() => {
@@ -57,23 +60,34 @@ export class HomeComponent implements OnInit {
     console.log(this.spotifyConnect)
   }
 
-  goToPlaylist(id: string) {
-    this.http.get<any>(SPOTIFY_API + 'playlists/' + id, {headers: this.headers})
-    .subscribe(r => {
-      console.log(r.tracks.items)
-    })
-  }
 
   fetchData() {
     this.http.get(SPOTIFY_API + 'me', {headers: this.headers})
     .subscribe(r => {
-      console.log(r)
       this.user = r
     })
-    this.http.get<any>(SPOTIFY_API + 'me/playlists', {headers: this.headers})
-    .subscribe(r => {
-      console.log(r.items)
+
+    this.http.get(SPOTIFY_API + 'me/playlists', {headers: this.headers})
+    .subscribe((r:any) => {
       this.playlists = r.items
+      console.log(r.items)
+    })
+  }
+
+  getSongsFromPlaylist(id:string, name:string, image:string) {
+    this.http.get<any>(SPOTIFY_API + 'playlists/' + id, {headers: this.headers})
+    .subscribe(r => {
+      const tracks: any[] = []
+      r.tracks.items.forEach((track:any) => {
+        if(track.track.artists.length > 0) {
+          tracks.push({
+            id: track.track.id,
+            artist : track.track.artists[0].name,
+            title: track.track.name
+          })
+        }        
+      })
+      this.router.navigate(['playlist/' + id], {state: {tracks, name, image}})
     })
   }
 }

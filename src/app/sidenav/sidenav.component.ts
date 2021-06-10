@@ -43,14 +43,17 @@ export class SidenavComponent implements OnInit {
       this.cookie.delete('code')
       this.context.setSpotify(false, null)
       this.router.navigate(['/'])
-      this.toggleSidenav()
+      if(this.isMobile) {
+        this.toggleSidenav()
+      }
+      
     })
     .catch(e => console.log(e))
   }
 
   handleSelect(name:any) {
     if(this.isMobile) {
-      this.sidenav.toggle()
+      this.toggleSidenav()
     }
     this.menu.forEach(m => m.class = '')
     this.menu.forEach(m => {

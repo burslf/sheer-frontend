@@ -2,6 +2,9 @@ import { ContextService } from 'src/app/services/context.service';
 import { APIService } from 'src/app/API.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment'
+
+const redirectUri = environment.api
 
 @Component({
   selector: 'app-auth-close-api',
@@ -20,7 +23,7 @@ export class AuthCloseAPIComponent implements OnInit {
     if (code) {
       this.cookie.set('code', code);
       this.api
-      .GetSpotifyAccessToken(code)
+      .GetSpotifyAccessToken(code, redirectUri)
       .then((r) => {
         if (r.status && r.status == 200) {
           console.log(r.data)

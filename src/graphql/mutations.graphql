@@ -23,8 +23,8 @@ mutation UpdateUser($clientId: String!, $payload: String!) {
     last_name
   }
 }
-mutation GetSpotifyAccessToken($code: String!) {
-  getSpotifyAccessToken(code: $code) {
+mutation GetSpotifyAccessToken($code: String!, $redirectUri: String!) {
+  getSpotifyAccessToken(code: $code, redirectUri: $redirectUri) {
     data {
       access_token
       token_type

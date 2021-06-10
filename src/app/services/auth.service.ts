@@ -20,5 +20,8 @@ export class AuthService {
   signup(clientId: string, email: string) {
     return this.api.Signup(clientId, email);
   }
+  getLyrics(artist:string, title:string) {
+    return this.api.GetLyrics(artist, title)
+  }
 
 }

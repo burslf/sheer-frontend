@@ -1,3 +1,4 @@
+import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { AuthCloseAPIComponent } from './pages/auth-close-api/auth-close-api.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'earners', component: EarnersComponent },
       { path: 'new-earner', component: NewEarnerComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'playlist/:id', component: PlaylistComponent },
       { path: 'authCloseAPI', component: AuthCloseAPIComponent}
     ],
   },

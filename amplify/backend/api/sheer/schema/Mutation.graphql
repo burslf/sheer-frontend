@@ -5,6 +5,6 @@ type Mutation {
     @function(name: "SheerAPIoperations-${env}")
   updateUser(clientId: String!, payload: String!): User
     @function(name: "SheerAPIoperations-${env}")
-  getSpotifyAccessToken(code: String!): ResponseAxios
+  getSpotifyAccessToken(code: String!, redirectUri: String!): ResponseAxios
     @function(name: "SheerAPIoperations-${env}")
 }

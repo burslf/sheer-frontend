@@ -1,6 +1,9 @@
 type Query {
   getUserById(clientId: ID!): User
     @function(name: "SheerAPIoperations-${env}")
-  getSpotifyAuth: AuthEndpointResponse
+  getSpotifyAuth(redirectUri: String!): AuthEndpointResponse
     @function(name: "SheerAPIoperations-${env}")
+  getLyrics(artist: String!, title: String!): LyricsResponse
+    @function(name: "SheerAPIoperations-${env}")
+  
 }

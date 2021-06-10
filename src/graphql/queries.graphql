@@ -7,8 +7,13 @@ query GetUserById($clientId: ID!) {
     last_name
   }
 }
-query GetSpotifyAuth {
-  getSpotifyAuth {
+query GetSpotifyAuth($redirectUri: String!) {
+  getSpotifyAuth(redirectUri: $redirectUri) {
     auth_endpoint
+  }
+}
+query GetLyrics($artist: String!, $title: String!) {
+  getLyrics(artist: $artist, title: $title) {
+    lyrics
   }
 }

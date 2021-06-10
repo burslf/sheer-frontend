@@ -22,6 +22,10 @@
       "Type": "String",
       "Default": "http://localhost:4200/authCloseAPI"
     },
+    "SpotifyProdUri": {
+      "Type": "String",
+      "Default": "https://ioel.dev/authCloseAPI"
+    },
     "CloudWatchRule": {
       "Type": "String",
       "Default": "NONE",
@@ -103,6 +107,9 @@
             "SPOTIFY_REDIRECT_URI": {
               "Ref": "SpotifyRedirectUri"
             },
+            "SPOTIFY_PROD_URI": {
+              "Ref": "SpotifyProdUri"
+            },
             "ENV": {
               "Ref": "env"
             },
@@ -120,7 +127,7 @@
         "Runtime": "nodejs14.x",
         "Layers": [
           {
-            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:SheerAPIoperationLayer-staging:1"
+            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:SheerAPIoperationLayer-staging:4"
           }
         ],
         "Timeout": "25"

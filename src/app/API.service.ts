@@ -44,6 +44,11 @@ export type AuthEndpointResponse = {
   auth_endpoint?: string;
 };
 
+export type LyricsResponse = {
+  __typename: "LyricsResponse";
+  lyrics?: string;
+};
+
 export type SignupMutation = {
   __typename: "SignupResponse";
   user: {
@@ -93,6 +98,11 @@ export type GetUserByIdQuery = {
 export type GetSpotifyAuthQuery = {
   __typename: "AuthEndpointResponse";
   auth_endpoint: string;
+};
+
+export type GetLyricsQuery = {
+  __typename: "LyricsResponse";
+  lyrics: string;
 };
 
 @Injectable({
@@ -160,10 +170,11 @@ export class APIService {
     return <UpdateUserMutation>response.data.updateUser;
   }
   async GetSpotifyAccessToken(
-    code: string
+    code: string,
+    redirectUri: string
   ): Promise<GetSpotifyAccessTokenMutation> {
-    const statement = `mutation GetSpotifyAccessToken($code: String!) {
-        getSpotifyAccessToken(code: $code) {
+    const statement = `mutation GetSpotifyAccessToken($code: String!, $redirectUri: String!) {
+        getSpotifyAccessToken(code: $code, redirectUri: $redirectUri) {
           __typename
           data {
             __typename
@@ -177,7 +188,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      code
+      code,
+      redirectUri
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -202,14 +214,35 @@ export class APIService {
     )) as any;
     return <GetUserByIdQuery>response.data.getUserById;
   }
-  async GetSpotifyAuth(): Promise<GetSpotifyAuthQuery> {
-    const statement = `query GetSpotifyAuth {
-        getSpotifyAuth {
+  async GetSpotifyAuth(redirectUri: string): Promise<GetSpotifyAuthQuery> {
+    const statement = `query GetSpotifyAuth($redirectUri: String!) {
+        getSpotifyAuth(redirectUri: $redirectUri) {
           __typename
           auth_endpoint
         }
       }`;
-    const response = (await API.graphql(graphqlOperation(statement))) as any;
+    const gqlAPIServiceArguments: any = {
+      redirectUri
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
     return <GetSpotifyAuthQuery>response.data.getSpotifyAuth;
+  }
+  async GetLyrics(artist: string, title: string): Promise<GetLyricsQuery> {
+    const statement = `query GetLyrics($artist: String!, $title: String!) {
+        getLyrics(artist: $artist, title: $title) {
+          __typename
+          lyrics
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      artist,
+      title
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetLyricsQuery>response.data.getLyrics;
   }
 }
