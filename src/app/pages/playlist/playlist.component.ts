@@ -33,12 +33,12 @@ export class PlaylistComponent implements OnInit {
   
   ngOnInit(): void {
     this.context.spotifyAccessToken.subscribe(r => this.accessToken = r)
-    if(!history.state.tracks) {
+    if(!history.state.trackArray) {
       this.router.navigate(['/'])
     }else {
       if(this.accessToken) {
         this.headers.Authorization = `Bearer ${this.accessToken}` 
-        history.state.tracks.forEach((t:any) => {
+        history.state.trackArray.forEach((t:any) => {
           this.http.get(SPOTIFY_API + 'tracks/' + t.id, {headers: this.headers})
           .subscribe((r:any) => {
             this.tracks.push({
@@ -49,6 +49,10 @@ export class PlaylistComponent implements OnInit {
             })
           })
         })
+        // this.http.get(SPOTIFY_API + 'me/tracks', {headers: this.headers})
+        // .subscribe(r => {
+        //   console.log(r)
+        // })
       }
     }
   }

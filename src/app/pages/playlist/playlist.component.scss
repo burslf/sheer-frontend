@@ -10,22 +10,32 @@
         height: 200px;
     }
 }
-
+.pl-name {
+    text-align: center;
+}
 .track-container{
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: center;
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     & .track {
+
         & img{
 
         }
         & .info{
-            margin-left: 14px;
+            // margin-left: 14px;
             display: flex;
-            flex-direction: column;
-            width: 90%;
+            justify-content: space-between;
+            align-items: center;
+            & span {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
             & div {
                 display: flex;
                 justify-content: flex-end;
@@ -36,7 +46,7 @@
         display: flex;
         justify-content: center;
         .lyrics-loading{
-
+            stroke: white;
         }
         .lyrics {
             display: flex;
@@ -45,3 +55,8 @@
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .track-container{
+        width: 95% !important;
+    }
+}
