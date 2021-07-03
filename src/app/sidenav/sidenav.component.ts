@@ -41,7 +41,7 @@ export class SidenavComponent implements OnInit {
     .then(r => {
       this.cookie.delete('access_token')
       this.cookie.delete('code')
-      this.context.setSpotify(false, null)
+      this.context.setSpotify(false)
       this.router.navigate(['/'])
       if(this.isMobile) {
         this.toggleSidenav()

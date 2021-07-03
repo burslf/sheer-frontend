@@ -3,6 +3,7 @@ import { APIService } from 'src/app/API.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 const SPOTIFY_API = 'https://api.spotify.com/v1/'
 
@@ -17,8 +18,6 @@ export class PlaylistComponent implements OnInit {
     name: history.state.name
   }
   tracks:any = []
-  headers:any = {'Authorization' : ''}
-  accessToken: string | null = null
   openedTrack:any = {
     artist: '',
     title: '',
@@ -29,30 +28,21 @@ export class PlaylistComponent implements OnInit {
     title: '',
     status: false
   }
-  constructor(private api:APIService, private router: Router, private context:ContextService,  private http: HttpClient) { }
+  constructor(private api:APIService, private router: Router, private spotify:SpotifyService,  private http: HttpClient) { }
   
   ngOnInit(): void {
-    this.context.spotifyAccessToken.subscribe(r => this.accessToken = r)
     if(!history.state.trackArray) {
       this.router.navigate(['/'])
     }else {
-      if(this.accessToken) {
-        this.headers.Authorization = `Bearer ${this.accessToken}` 
+      if(this.spotify.bearer.getValue().length > 0) {
         history.state.trackArray.forEach((t:any) => {
-          this.http.get(SPOTIFY_API + 'tracks/' + t.id, {headers: this.headers})
-          .subscribe((r:any) => {
-            this.tracks.push({
-              artist: r.artists[0].name,
-              image: r.album.images[2].url,
-              title: r.name,
-              preview: r.preview_url
-            })
+          this.tracks.push({
+              artist: t.artist,
+              image: t.image,
+              title: t.title,
+              preview: 'fe'
           })
         })
-        // this.http.get(SPOTIFY_API + 'me/tracks', {headers: this.headers})
-        // .subscribe(r => {
-        //   console.log(r)
-        // })
       }
     }
   }
@@ -71,5 +61,11 @@ export class PlaylistComponent implements OnInit {
       this.openedTrack.lyrics = lyricsArray
     })
     .catch(e => console.log(e))
+  }
+
+  closeLyrics() {
+    this.openedTrack.artist = '',
+    this.openedTrack.title = '',
+    this.openedTrack.lyrics = ''
   }
 }

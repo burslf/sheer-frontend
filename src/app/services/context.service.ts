@@ -8,12 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 export class ContextService {
   isMobile: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   spotifyConnect: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  spotifyAccessToken: BehaviorSubject<string|null> = new BehaviorSubject<string|null>(null);
 
   constructor(private cookie: CookieService) {
     const access_token = this.cookie.get('access_token')
     if(access_token) {
-      this.setSpotify(true, access_token)
+      this.setSpotify(true)
     }
   }
   
@@ -21,8 +20,7 @@ export class ContextService {
     this.isMobile.next(value);
   }
 
-  setSpotify(value: boolean, token:string|null) {
+  setSpotify(value: boolean) {
     this.spotifyConnect.next(value);
-    this.spotifyAccessToken.next(token);
   }
 }

@@ -51,10 +51,16 @@
         .lyrics {
             display: flex;
             flex-direction: column;
+            & div {
+                margin-bottom: 12px;
+            }
         }
     }
 }
 
+.close-lyrics-btn{
+    font-size: 1.2rem;
+}
 @media only screen and (max-width: 600px) {
     .track-container{
         width: 95% !important;

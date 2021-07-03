@@ -22,26 +22,31 @@ html, body {
   color: $primary;
 }
 
-// ::ng-deep {
-//     .mat-form-field-appearance-outline .mat-form-field-outline {
-//        color: white;
-//     }
-//     mat-form-field {
-//        .mat-hint, input, ::placeholder, .mat-form-field-label {
-//           color: white !important;
-//        }
-//     }
-//     mat-selection-list{
-//       .mat-list-text {
-//         color: white;
-//       }
-//       .mat-pseudo-checkbox {
-//         color: white;
-//       }
-//     }
-//     .mat-radio-container {
-//       .mat-radio-outer-circle {
-//         background-color: white
-//       }
-//     }
-//  }
+::ng-deep {
+    //mat-input focused color
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+      color: white!important;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+       color: white;
+    }
+    mat-form-field {
+       .mat-hint, input, ::placeholder, .mat-form-field-label {
+          color: white !important;
+       }
+    }
+    mat-selection-list{
+      .mat-list-text {
+        color: white;
+      }
+      .mat-pseudo-checkbox {
+        color: white;
+      }
+    }
+    .mat-radio-container {
+      .mat-radio-outer-circle {
+        background-color: white
+      }
+    }
+ }

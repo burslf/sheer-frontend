@@ -17,14 +17,11 @@ const redirectUri = environment.api!;
   host: { class: 'app-home' },
 })
 export class HomeComponent implements OnInit {
-  panelOpenState = false;
-  code: string | null = this.cookie.get('code');
-  accessToken: string | null = null;
+  accessToken: string | null = this.cookie.get('access_token');
   spotifyConnect!: boolean;
   interval: any;
   playlists!: any[];
   user!: any;
-  headers: any = { Authorization: '' };
   constructor(
     private api: APIService,
     private spotify: SpotifyService,
@@ -35,8 +32,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.context.spotifyConnect.subscribe((r) => (this.spotifyConnect = r));
-    this.context.spotifyAccessToken.subscribe((r) => (this.accessToken = r));
+    this.context.spotifyConnect.subscribe((r) => {
+      console.log(r)
+      this.spotifyConnect = r
+    });
     if (this.accessToken) {
       this.spotify.setBearerAuth(`Bearer ${this.accessToken}`);
       this.fetchData();
@@ -52,8 +51,7 @@ export class HomeComponent implements OnInit {
           console.log('entered');
           const token = this.cookie.get('access_token');
           if (token) {
-            this.context.setSpotify(true, token);
-            this.headers.Authorization = `Bearer ${token}`;
+            this.context.setSpotify(true);
             this.fetchData();
             clearInterval(this.interval);
           }
@@ -77,7 +75,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getSongsFromPlaylist(id: string, name: string, image: string) {
+  viewPlaylistDetail(id: string, name: string, image: string) {
     this.spotify.getPlaylistById(id).subscribe((r) => {
       const trackArray = this.getTracksArray(r.tracks.items)
       console.log(trackArray)
@@ -90,11 +88,13 @@ export class HomeComponent implements OnInit {
   getTracksArray(trackInPlaylist: []) {
     const tracks: any[] = [];
     trackInPlaylist.forEach((t: any) => {
+      console.log(t)
       if (t.track.artists.length > 0) {
         tracks.push({
           id: t.track.id,
           artist: t.track.artists[0].name,
           title: t.track.name,
+          image: t.track.album.images[2].url
         });
       }
     })

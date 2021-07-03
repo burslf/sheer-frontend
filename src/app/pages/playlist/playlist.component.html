@@ -12,7 +12,9 @@
                 {{track.title}}
             </span>
             <div>
-                <button *ngIf="isLyricsLoading.artist !== track.artist && isLyricsLoading.title !== track.title" mat-button (click)="showLyrics(track.artist, track.title)"> LYRICS</button>
+                <button *ngIf="openedTrack.title == track.title && openedTrack.artist == track.artist" mat-button (click)="closeLyrics()" class="close-lyrics-btn"> X </button>
+
+                <button *ngIf="openedTrack.title !== track.title && openedTrack.artist !== track.artist" mat-button (click)="showLyrics(track.artist, track.title)"> LYRICS</button>
             </div>
         </div>
     </div>
@@ -20,9 +22,7 @@
         <mat-spinner diameter="40" *ngIf="isLyricsLoading.artist == track.artist && isLyricsLoading.title == track.title" class="lyrics-loading"></mat-spinner>
         <div *ngIf="openedTrack.title == track.title && openedTrack.artist == track.artist" class="lyrics">
             <div *ngFor="let row of openedTrack.lyrics">
-                <div>
                     {{row}}
-                </div>
             </div>
         </div>
     </div>

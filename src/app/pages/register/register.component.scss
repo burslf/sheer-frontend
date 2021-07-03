@@ -5,9 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
     position: relative;
-    overflow-y: scroll;
     & .form-container{
         display: flex;
         width: 80%;
@@ -29,10 +27,8 @@
     } 
     & .mat-form-field {
       width: 95% !important;
-      // color: #bebebe !important;
     }
     & .register-title {
-      // color: #bebebe;
       font-weight: 500;
     }
   }
@@ -41,13 +37,3 @@
     height: 40px;
   }
   
-  ::ng-deep {
-      .mat-form-field-appearance-outline .mat-form-field-outline {
-         color: white;
-      }
-      mat-form-field {
-         .mat-hint, input, ::placeholder, .mat-form-field-label {
-            color: $primary !important;
-         }
-      }
-   }
