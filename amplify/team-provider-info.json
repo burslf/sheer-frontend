@@ -15,91 +15,11 @@
       "function": {
         "SheerAPIoperations": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
-<<<<<<< HEAD
-          "s3Key": "amplify-builds/SheerAPIoperations-6538434a4f563454684b-build.zip"
-        },
-        "SheerAPIoperationLayer": {
-          "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
-          "s3Key": "amplify-builds/SheerAPIoperationLayer-build.zip"
-        }
-      }
-    },
-    "nonCFNdata": {
-      "function": {
-        "SheerAPIoperationLayer": {
-          "layerVersionMap": {
-            "1": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "lV247hLOUgh4N/fKUVKoOpBA/cZW1m5KgS7KItirgiI="
-            },
-            "2": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "G7z6BYxXVE4XmSuftZDbeMwkQCqXm0djMEYMghk9PuQ="
-            },
-            "3": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "qD/Rq/eAbxg0YIf7vr+sSGAiA1ml6hSeXLH/RihkNY0="
-            },
-            "4": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "teUyo2VerhLqSgjBNLTzBn90JFLvDykFl7ApdIMdWgU="
-            },
-            "5": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "umieb8DMYlnI8rfwLrvG3rDF3HBwpkdEy8vqXdtO5io="
-            },
-            "6": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "7lxTQqx7E/C03PrBcEau5nRtQ/uvMPE5eTyVU7lYpZ8="
-            },
-            "7": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "+mRPeYeH5yhkcY1Z+fHDLff79rdAuyD9lXjsjHXt7qo="
-            },
-            "8": {
-              "permissions": [
-                {
-                  "type": "private"
-                }
-              ],
-              "hash": "MIjDnExNvWCKT6LARfdMI6eQ27y3PgkARLb9v2zIyTY="
-            }
-          }
-=======
           "s3Key": "amplify-builds/SheerAPIoperations-6e426a2b693235366c59-build.zip"
         },
         "SheerAPIoperationLayer": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
           "s3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersion18c38489-build.zip"
->>>>>>> 9834e48 (wip)
         }
       }
     }
