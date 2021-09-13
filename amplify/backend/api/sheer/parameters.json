@@ -1,5 +1,0 @@
-{
-  "AppSyncApiName": "sheer",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
-}

@@ -1,3 +1,0 @@
-type LyricsResponse {
-    lyrics : String!
-}
