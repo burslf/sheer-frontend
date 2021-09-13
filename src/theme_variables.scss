@@ -1,0 +1,77 @@
+@import "~@angular/material/theming";
+
+$md-purple: (
+  50 : #e4e3ea,
+  100 : #bcb8ca,
+  200 : #9089a6,
+  300 : #635982,
+  400 : #413668,
+  500 : #20124d,
+  600 : #1c1046,
+  700 : #180d3d,
+  800 : #130a34,
+  900 : #0b0525,
+  A100 : #7561ff,
+  A200 : #492eff,
+  A400 : #2000fa,
+  A700 : #1d00e1,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #ffffff,
+      A200 : #ffffff,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+$md-black: (
+  50: #e3e3e3,
+  100: #bab9b9,
+  200: #8c8a8a,
+  300: #5e5b5b,
+  400: #3c3737,
+  500: #191414,
+  600: #161212,
+  700: #120e0e,
+  800: #0e0b0b,
+  900: #080606,
+  A100: #ff4f4f,
+  A200: #ff1c1c,
+  A400: #e80000,
+  A700: #cf0000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+$app-primary: mat-palette($md-purple);
+$app-accent: mat-palette($md-black);
+$app-warn: mat-palette($mat-deep-orange);
+
+// Custom Sass colors vars (will be available in all the project)
+$primary: mat-color($app-primary, 500, 800);
+$accent: mat-color($app-accent, 500, 200);
+$warn: mat-color($app-warn);

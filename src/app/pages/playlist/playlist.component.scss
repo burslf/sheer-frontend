@@ -1,0 +1,68 @@
+.img-container {
+    margin-top: 25px;
+    display:flex;
+    width: 100%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    & img {
+        width: 200px;
+        height: 200px;
+    }
+}
+.pl-name {
+    text-align: center;
+}
+.track-container{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    & .track {
+
+        & img{
+
+        }
+        & .info{
+            // margin-left: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & span {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+            & div {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+    & .lyrics-container {
+        display: flex;
+        justify-content: center;
+        .lyrics-loading{
+            stroke: white;
+        }
+        .lyrics {
+            display: flex;
+            flex-direction: column;
+            & div {
+                margin-bottom: 12px;
+            }
+        }
+    }
+}
+
+.close-lyrics-btn{
+    font-size: 1.2rem;
+}
+@media only screen and (max-width: 600px) {
+    .track-container{
+        width: 95% !important;
+    }
+}

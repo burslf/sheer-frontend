@@ -1,0 +1,29 @@
+<div class="img-container">
+    <img src="{{playlist.image}}" alt="" srcset="">
+</div>
+<h3 class="pl-name">{{playlist.name}}</h3>
+<div *ngFor="let track of tracks" class="track-container">
+    <div class="track">
+        <div class="img">
+            <img src="{{track.image}}" alt="" srcset="">
+        </div>
+        <div class="info">
+            <span> 
+                {{track.title}}
+            </span>
+            <div>
+                <button *ngIf="openedTrack.title == track.title && openedTrack.artist == track.artist" mat-button (click)="closeLyrics()" class="close-lyrics-btn"> X </button>
+
+                <button *ngIf="openedTrack.title !== track.title && openedTrack.artist !== track.artist" mat-button (click)="showLyrics(track.artist, track.title)"> LYRICS</button>
+            </div>
+        </div>
+    </div>
+    <div class="lyrics-container">
+        <mat-spinner diameter="40" *ngIf="isLyricsLoading.artist == track.artist && isLyricsLoading.title == track.title" class="lyrics-loading"></mat-spinner>
+        <div *ngIf="openedTrack.title == track.title && openedTrack.artist == track.artist" class="lyrics">
+            <div *ngFor="let row of openedTrack.lyrics">
+                    {{row}}
+            </div>
+        </div>
+    </div>
+</div>

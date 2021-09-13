@@ -1,0 +1,39 @@
+@import "../../../styles.scss";
+
+.app-register:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    & .form-container{
+        display: flex;
+        width: 80%;
+        max-width: 600px;
+    }
+}
+
+.register-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    width: 100%;
+    & .submit-btn {
+      margin-bottom: 27px;
+      font-size: 19px;
+      padding: 0px 12px !important;
+    } 
+    & .mat-form-field {
+      width: 95% !important;
+    }
+    & .register-title {
+      font-weight: 500;
+    }
+  }
+  .google-icon > img {
+    width: 40px;
+    height: 40px;
+  }
+  

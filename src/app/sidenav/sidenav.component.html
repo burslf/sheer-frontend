@@ -1,0 +1,21 @@
+<div class="menu-container">
+  <div class="menu-header">
+    
+  </div>
+  <div class="menu-content">
+    <ul class="list">
+        <li class="{{name.class}}" *ngFor="let name of menu" (click)="handleSelect(name)">
+          <div class="name" >
+            {{name.name}}
+            <mat-icon>chevron_right</mat-icon>
+
+          </div>
+        </li>
+        <li >
+          <div class="name" (click)="logout()">
+            Logout
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>

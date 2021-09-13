@@ -1,0 +1,12 @@
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav opened="isMobile" #sidenav class="sidenav">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <app-toolbar></app-toolbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
