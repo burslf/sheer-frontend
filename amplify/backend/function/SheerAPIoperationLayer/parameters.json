@@ -1,3 +1,10 @@
 {
+<<<<<<< HEAD
   "layerVersion": 8
+=======
+  "runtimes": [
+    "nodejs14.x"
+  ],
+  "description": "Updated layer version 2021-07-03T15:53:34.741Z"
+>>>>>>> 9834e48 (wip)
 }

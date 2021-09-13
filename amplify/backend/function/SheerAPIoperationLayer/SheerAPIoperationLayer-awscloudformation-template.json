@@ -2,6 +2,7 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "Lambda layer resource stack creation using Amplify CLI",
   "Parameters": {
+<<<<<<< HEAD
     "layerVersion": {
       "Type": "String",
       "Default": "1"
@@ -23,6 +24,32 @@
         "CompatibleRuntimes": [
           "nodejs14.x"
         ],
+=======
+    "env": {
+      "Type": "String"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
+    },
+    "description": {
+      "Type": "String",
+      "Default": ""
+    },
+    "runtimes": {
+      "Type": "List<String>"
+    }
+  },
+  "Resources": {
+    "LambdaLayerVersion18c38489": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": {
+          "Ref": "runtimes"
+        },
+>>>>>>> 9834e48 (wip)
         "Content": {
           "S3Bucket": {
             "Ref": "deploymentBucketName"
@@ -32,6 +59,7 @@
           }
         },
         "Description": {
+<<<<<<< HEAD
           "Fn::Sub": [
             "Lambda layer version ${latestVersion}",
             {
@@ -40,6 +68,9 @@
               }
             }
           ]
+=======
+          "Ref": "description"
+>>>>>>> 9834e48 (wip)
         },
         "LayerName": {
           "Fn::Sub": [
@@ -52,14 +83,22 @@
           ]
         }
       },
+<<<<<<< HEAD
       "DeletionPolicy": "Retain",
       "UpdateReplacePolicy": "Retain"
     },
     "LambdaLayerPermissionprivate1": {
+=======
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate18c38489": {
+>>>>>>> 9834e48 (wip)
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
+<<<<<<< HEAD
           "Fn::Sub": [
             "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:${layerName}-${env}:${layerVersion}",
             {
@@ -71,11 +110,53 @@
             }
           ]
         },
+=======
+          "Ref": "LambdaLayerVersion18c38489"
+        },
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+    "LambdaLayerVersion821cd189": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs14.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersion821cd189-build.zip"
+        },
+        "Description": "Updated layer version 2021-07-01T19:42:57.673Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "SheerAPIoperationLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate821cd189": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:10",
+>>>>>>> 9834e48 (wip)
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate2": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -92,11 +173,46 @@
             }
           ]
         },
+=======
+    "LambdaLayerVersionbec023b5": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs14.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersionbec023b5-build.zip"
+        },
+        "Description": "Updated layer version 2021-07-01T19:18:38.237Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "SheerAPIoperationLayer-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatebec023b5": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:9",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate3": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -113,11 +229,19 @@
             }
           ]
         },
+=======
+    "LambdaLayerPermissionPrivateLegacy8": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:8",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate4": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -134,11 +258,19 @@
             }
           ]
         },
+=======
+    "LambdaLayerPermissionPrivateLegacy7": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:7",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate5": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -155,11 +287,19 @@
             }
           ]
         },
+=======
+    "LambdaLayerPermissionPrivateLegacy6": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:6",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate6": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -176,11 +316,19 @@
             }
           ]
         },
+=======
+    "LambdaLayerPermissionPrivateLegacy5": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:5",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate7": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -197,11 +345,19 @@
             }
           ]
         },
+=======
+    "LambdaLayerPermissionPrivateLegacy4": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:4",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
+<<<<<<< HEAD
     "LambdaLayerPermissionprivate8": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
@@ -209,10 +365,18 @@
         "LayerVersionArn": {
           "Ref": "LambdaLayer"
         },
+=======
+    "LambdaLayerPermissionPrivateLegacy3": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:3",
+>>>>>>> 9834e48 (wip)
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
+<<<<<<< HEAD
     }
   },
   "Conditions": {
@@ -227,17 +391,43 @@
           ]
         }
       ]
+=======
+    },
+    "LambdaLayerPermissionPrivateLegacy2": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:2",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerPermissionPrivateLegacy1": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-east-2:885579209771:layer:SheerAPIoperationLayer-staging:1",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+>>>>>>> 9834e48 (wip)
     }
   },
   "Outputs": {
     "Arn": {
       "Value": {
+<<<<<<< HEAD
         "Ref": "LambdaLayer"
       }
     },
     "Region": {
       "Value": {
         "Ref": "AWS::Region"
+=======
+        "Ref": "LambdaLayerVersion18c38489"
+>>>>>>> 9834e48 (wip)
       }
     }
   }

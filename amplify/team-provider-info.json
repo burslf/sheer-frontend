@@ -15,6 +15,7 @@
       "function": {
         "SheerAPIoperations": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
+<<<<<<< HEAD
           "s3Key": "amplify-builds/SheerAPIoperations-6538434a4f563454684b-build.zip"
         },
         "SheerAPIoperationLayer": {
@@ -92,6 +93,13 @@
               "hash": "MIjDnExNvWCKT6LARfdMI6eQ27y3PgkARLb9v2zIyTY="
             }
           }
+=======
+          "s3Key": "amplify-builds/SheerAPIoperations-6e426a2b693235366c59-build.zip"
+        },
+        "SheerAPIoperationLayer": {
+          "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
+          "s3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersion18c38489-build.zip"
+>>>>>>> 9834e48 (wip)
         }
       }
     }
