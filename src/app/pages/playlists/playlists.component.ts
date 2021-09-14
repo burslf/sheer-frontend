@@ -11,12 +11,13 @@ const SPOTIFY_API = 'https://api.spotify.com/v1/';
 const redirectUri = environment.api!;
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  host: { class: 'app-home' },
+  selector: 'app-playlists',
+  templateUrl: './playlists.component.html',
+  styleUrls: ['./playlists.component.scss'],
+  host: { class: 'app-playlists' },
+
 })
-export class HomeComponent implements OnInit {
+export class PlaylistsComponent implements OnInit {
   accessToken: string | null = this.cookie.get('access_token');
   spotifyConnect!: boolean;
   interval: any;

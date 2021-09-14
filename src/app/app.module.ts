@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
+import { PlaylistsComponent } from './pages/playlists/playlists.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PlaylistComponent } from './pages/playlist/playlist.component';
     EarnersComponent,
     AuthCloseAPIComponent,
     PlaylistComponent,
+    PlaylistsComponent,
   ],
   imports: [
     AppMaterialModule,

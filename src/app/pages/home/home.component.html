@@ -1,24 +1,16 @@
-<button *ngIf="!spotifyConnect" mat-raised-button color="primary" class="connect-btn" (click)="connectSpotify()">
-  CONNECT SPOTIFY
-</button>
-
-<div *ngIf="spotifyConnect">
-    <div *ngIf="user" class="user-profile">
-        <div class="user-img">
-          <img src="{{ user.images[0].url }}" alt="" />
-        </div>
-        <h2 *ngIf="spotifyConnect">{{ user.display_name }}</h2>
-      </div>
-      
-      <div *ngFor="let playlist of playlists" class="playlists">
-        <img src="{{ playlist.images[0].url }}" alt="" width="180" height="180" />
-        <h3>{{ playlist.name }}</h3>
-        <button
-          mat-raised-button
-          (click)="viewPlaylistDetail(playlist.id, playlist.name, playlist.images[0].url)"
-        >
-          DETAILS
-        </button>
-      </div>
-      
+<div *ngIf="!spotifyConnect" class="welcome">
+  <h2>Welcome to Spoti Got Bars</h2>
+  <h3 [ngStyle]="{'align-items':'center'}">Connect to spotify and you'll get bars from most of your spotify library !</h3>
+  <button  mat-raised-button color="primary" class="connect-btn" (click)="connectSpotify()">
+    CONNECT SPOTIFY
+  </button>
 </div>
+
+<div *ngIf="user" class="user-profile">
+  <h1>Welcome</h1>
+  <div class="user-img">
+    <img src="{{ user.images[0].url }}" alt="" />
+  </div>
+  <h2 *ngIf="spotifyConnect">{{ user.display_name }} !</h2>
+</div>
+

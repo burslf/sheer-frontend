@@ -9,6 +9,7 @@ import { PagesComponent } from './pages/pages.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { EarnersComponent } from './pages/earners/earners.component';
+import { PlaylistsComponent } from './pages/playlists/playlists.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'earners', component: EarnersComponent },
       { path: 'new-earner', component: NewEarnerComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'playlists', component: PlaylistsComponent },
       { path: 'playlist/:id', component: PlaylistComponent },
       { path: 'authCloseAPI', component: AuthCloseAPIComponent}
     ],

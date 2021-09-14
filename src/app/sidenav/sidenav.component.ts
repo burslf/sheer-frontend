@@ -18,8 +18,8 @@ interface Menu {
 })
 export class SidenavComponent implements OnInit {
   public menu: Menu[] = [
-    {name: 'Home', path: '', class:'selected'},
-    // {name: 'Earners', path: 'earners', class:''},
+    {name: 'Home', path: '', class:''},
+    {name: 'Playlists', path: 'playlists', class:'selected'},
     {name: 'Login', path: 'login', class:''},
     
   ]

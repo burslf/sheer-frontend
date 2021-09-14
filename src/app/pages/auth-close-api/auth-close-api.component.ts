@@ -3,6 +3,7 @@ import { APIService } from 'src/app/API.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment'
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 const redirectUri = environment.api
 
@@ -14,14 +15,14 @@ const redirectUri = environment.api
 })
 export class AuthCloseAPIComponent implements OnInit {
   isLoading = false;
-  constructor(private cookie: CookieService, private api: APIService, private context: ContextService) { }
+  constructor(private cookie: CookieService,private spotify: SpotifyService, private api: APIService, private context: ContextService) { }
 
   ngOnInit(): void {
     this.isLoading = true
     const url = new URLSearchParams(window.location.search);
     const code = url.get('code');
     if (code) {
-      this.cookie.set('code', code);
+      this.cookie.set('code', code, {path: '/'});
       this.api
       .GetSpotifyAccessToken(code, redirectUri)
       .then((r) => {
@@ -29,7 +30,7 @@ export class AuthCloseAPIComponent implements OnInit {
           console.log(r.data)
           this.isLoading = false
           const accessToken = r.data.access_token
-          this.cookie.set('access_token', accessToken);
+          this.cookie.set('access_token', accessToken, {path: '/'});
           window.close()
         }
       })
