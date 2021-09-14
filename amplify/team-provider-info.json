@@ -1,0 +1,27 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sheer-staging-144508-authRole",
+      "UnauthRoleArn": "arn:aws:iam::885579209771:role/amplify-sheer-staging-144508-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::885579209771:role/amplify-sheer-staging-144508-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-sheer-staging-144508-deployment",
+      "UnauthRoleName": "amplify-sheer-staging-144508-unauthRole",
+      "StackName": "amplify-sheer-staging-144508",
+      "StackId": "arn:aws:cloudformation:us-east-2:885579209771:stack/amplify-sheer-staging-144508/75a79610-c543-11eb-b299-02901252d834",
+      "AmplifyAppId": "dxlci0dzp0dy7"
+    },
+    "categories": {
+      "function": {
+        "SheerAPIoperations": {
+          "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
+          "s3Key": "amplify-builds/SheerAPIoperations-6e426a2b693235366c59-build.zip"
+        },
+        "SheerAPIoperationLayer": {
+          "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
+          "s3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersionf0e890f1-build.zip"
+        }
+      }
+    }
+  }
+}

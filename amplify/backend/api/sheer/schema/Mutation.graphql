@@ -1,0 +1,10 @@
+type Mutation {
+  signup(clientId: String!, email: String!): SignupResponse
+    @function(name: "SheerAPIoperations-${env}")
+  login(clientId: String!): LoginResponse
+    @function(name: "SheerAPIoperations-${env}")
+  updateUser(clientId: String!, payload: String!): User
+    @function(name: "SheerAPIoperations-${env}")
+  getSpotifyAccessToken(code: String!, redirectUri: String!): ResponseAxios
+    @function(name: "SheerAPIoperations-${env}")
+}

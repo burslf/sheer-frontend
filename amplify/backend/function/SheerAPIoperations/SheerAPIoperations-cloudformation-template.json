@@ -1,0 +1,244 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Parameters": {
+    "UserDB": {
+      "Type": "String",
+      "Default": "User-uffnfe7zujeorastrmjuwejsdi-staging"
+    },
+    "JwtSecret": {
+      "Type": "String",
+      "Default": "24D09F4A58B73273FAEBF7D225BCF10B31BD8711761C32433957DDAA2D4D4924"
+    },
+    "SpotifyClient": {
+      "Type": "String",
+      "Default": "65f279e577fd4eee98930cc2f87912f3"
+    },
+    "SpotifySecret": {
+      "Type": "String",
+      "Default": "7f4a737af8c64d74b8b732aceaad1acd"
+    },
+    "SpotifyRedirectUri": {
+      "Type": "String",
+      "Default": "http://localhost:4200/authCloseAPI"
+    },
+    "SpotifyProdUri": {
+      "Type": "String",
+      "Default": "https://ioel.dev/authCloseAPI"
+    },
+    "CloudWatchRule": {
+      "Type": "String",
+      "Default": "NONE",
+      "Description": " Schedule Expression"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "env": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
+    },
+    "functionSheerAPIoperationLayerArn": {
+      "Type": "String",
+      "Default": "functionSheerAPIoperationLayerArn"
+    }
+  },
+  "Conditions": {
+    "ShouldNotCreateEnvResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "NONE"
+      ]
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Metadata": {
+        "aws:asset:path": "./src",
+        "aws:asset:property": "Code"
+      },
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
+        },
+        "Handler": "index.handler",
+        "FunctionName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "SheerAPIoperations",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "SheerAPIoperations",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "USER_DB": {
+              "Ref": "UserDB"
+            },
+            "JWT_SECRET": {
+              "Ref": "JwtSecret"
+            },
+            "SPOTIFY_CLIENT": {
+              "Ref": "SpotifyClient"
+            },
+            "SPOTIFY_SECRET": {
+              "Ref": "SpotifySecret"
+            },
+            "SPOTIFY_REDIRECT_URI": {
+              "Ref": "SpotifyRedirectUri"
+            },
+            "SPOTIFY_PROD_URI": {
+              "Ref": "SpotifyProdUri"
+            },
+            "ENV": {
+              "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
+            }
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs14.x",
+        "Layers": [
+          {
+            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:SheerAPIoperationLayer-staging:4"
+          }
+        ],
+        "Timeout": "25"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "sheerLambdaRolea1ccd288",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "sheerLambdaRolea1ccd288",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "lambdaexecutionpolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
+      }
+    }
+  }
+}
