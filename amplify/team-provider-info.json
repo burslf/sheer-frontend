@@ -15,12 +15,15 @@
       "function": {
         "SheerAPIoperations": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
-          "s3Key": "amplify-builds/SheerAPIoperations-6e426a2b693235366c59-build.zip"
+          "s3Key": "amplify-builds/SheerAPIoperations-485330694d4168537474-build.zip"
         },
         "SheerAPIoperationLayer": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
-          "s3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersionf0e890f1-build.zip"
+          "s3Key": "amplify-builds/SheerAPIoperationLayer-LambdaLayerVersion1306768f-build.zip"
         }
+      },
+      "auth": {
+        "sheer91ee9a1e": {}
       }
     }
   }

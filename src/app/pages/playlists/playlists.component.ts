@@ -34,7 +34,6 @@ export class PlaylistsComponent implements OnInit {
 
   ngOnInit(): void {
     this.context.spotifyConnect.subscribe((r) => {
-      console.log(r)
       this.spotifyConnect = r
     });
     if (this.accessToken) {
@@ -80,7 +79,6 @@ export class PlaylistsComponent implements OnInit {
   viewPlaylistDetail(id: string, name: string, image: string) {
     this.spotify.getPlaylistById(id).subscribe((r) => {
       const trackArray = this.getTracksArray(r.tracks.items)
-      console.log(trackArray)
       this.router.navigate(['playlist/' + id], {
         state: { trackArray, name, image },
       });

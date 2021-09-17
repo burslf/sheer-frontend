@@ -1,26 +1,26 @@
 @import "~@angular/material/theming";
 
-$md-green: (
-    50 : #e4f7ea,
-    100 : #bbeacc,
-    200 : #8edcaa,
-    300 : #61ce87,
-    400 : #3fc46e,
-    500 : #1db954,
-    600 : #1ab24d,
-    700 : #15aa43,
-    800 : #11a23a,
-    900 : #0a9329,
-    A100 : #c1ffcc,
-    A200 : #8effa3,
-    A400 : #5bff79,
-    A700 : #41ff64,
+$md-blue: (
+    50 : #e6edf3,
+    100 : #c0d1e1,
+    200 : #96b3ce,
+    300 : #6c94ba,
+    400 : #4d7dab,
+    500 : #2d669c,
+    600 : #285e94,
+    700 : #22538a,
+    800 : #1c4980,
+    900 : #11386e,
+    A100 : #a3c6ff,
+    A200 : #70a6ff,
+    A400 : #3d86ff,
+    A700 : #2476ff,
     contrast: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
-        400 : #000000,
+        400 : #ffffff,
         500 : #ffffff,
         600 : #ffffff,
         700 : #ffffff,
@@ -28,8 +28,8 @@ $md-green: (
         900 : #ffffff,
         A100 : #000000,
         A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
     )
 );
 
@@ -67,11 +67,11 @@ $md-black: (
 );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
-$app-primary: mat-palette($md-green);
+$app-primary: mat-palette($md-blue);
 $app-accent: mat-palette($md-black);
 $app-warn: mat-palette($mat-deep-orange);
 
 // Custom Sass colors vars (will be available in all the project)
-$primary: mat-color($app-primary, 500, 800);
-$accent: mat-color($app-accent, 500, 200);
+$primary: mat-color($app-primary, 500, 700);
+$accent: mat-color($app-accent, 500, 50);
 $warn: mat-color($app-warn);

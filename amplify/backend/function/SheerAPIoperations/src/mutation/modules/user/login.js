@@ -19,7 +19,7 @@ const login = async (event) => {
         console.log(uncryptedSecret)
         user.Item.secret_key = uncryptedSecret.toString(CryptoJS.enc.Utf8)
         const token = jwt.sign(user.Item, JWT_SECRET)
-        const reponse = { token }
+        const reponse = { user: user.Item, token }
         return reponse
     }
 };

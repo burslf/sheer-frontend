@@ -13,8 +13,13 @@ import { ContextService } from '../services/context.service';
 export class PagesComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;
   isMobile = false
+  themeMode:any = {
+    light: false,
+    dark: true
+  }
   constructor(private sidenavService: SidenavService, private context:ContextService, public breakpointObserver:BreakpointObserver) {
     this.context.isMobile.subscribe(r => this.isMobile = r)
+    this.context.themeMode.subscribe(r => this.themeMode = r)
   }
 
   ngOnInit(): void {
@@ -24,7 +29,7 @@ export class PagesComponent implements OnInit {
       ]).subscribe(result => {
         if(result.matches) {
           this.sidenav.mode = 'over'
-          this.context.setMobile(true)
+          this.context.setMobile(true) 
           this.sidenavService.close()          
         } else {
           this.sidenav.mode = 'side'

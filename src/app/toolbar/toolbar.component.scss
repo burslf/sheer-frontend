@@ -17,12 +17,12 @@
       left: 50%;
       transform: translatex(-50%);
       font-size: 1.4rem;
+      color: #000000
   }
-  & .logos {
-    width: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  & .theme-mode {
+    position: absolute;
+    right: 20px;
+    font-size: 1.4rem;
   }
 }
 
@@ -31,4 +31,5 @@
   .burger-btn{
     display: initial !important;
   }
+
 }

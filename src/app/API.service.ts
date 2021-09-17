@@ -7,46 +7,47 @@ import { Observable } from "zen-observable-ts";
 
 export type SignupResponse = {
   __typename: "SignupResponse";
-  user?: User;
-  token?: string;
+  user: User;
+  token: string;
 };
 
 export type User = {
   __typename: "User";
-  client_id?: string;
-  email?: string;
-  first_name?: string | null;
-  last_name?: string | null;
+  client_id: string;
+  email: string;
+  secret_key: string;
+  username?: string | null;
 };
 
 export type LoginResponse = {
   __typename: "LoginResponse";
-  token?: string;
+  user: User;
+  token: string;
 };
 
 export type ResponseAxios = {
   __typename: "ResponseAxios";
-  data?: AccessTokenResponse;
+  data: AccessTokenResponse;
   status?: number | null;
 };
 
 export type AccessTokenResponse = {
   __typename: "AccessTokenResponse";
-  access_token?: string;
-  token_type?: string;
-  expires_in?: string;
-  refresh_token?: string;
-  scope?: string;
+  access_token: string;
+  token_type: string;
+  expires_in: string;
+  refresh_token: string;
+  scope: string;
 };
 
 export type AuthEndpointResponse = {
   __typename: "AuthEndpointResponse";
-  auth_endpoint?: string;
+  auth_endpoint: string;
 };
 
 export type LyricsResponse = {
   __typename: "LyricsResponse";
-  lyrics?: string;
+  lyrics: string;
 };
 
 export type SignupMutation = {
@@ -55,14 +56,15 @@ export type SignupMutation = {
     __typename: "User";
     client_id: string;
     email: string;
-    first_name?: string | null;
-    last_name?: string | null;
+    secret_key: string;
+    username?: string | null;
   };
   token: string;
 };
 
 export type LoginMutation = {
   __typename: "LoginResponse";
+  user: User;
   token: string;
 };
 
@@ -70,8 +72,8 @@ export type UpdateUserMutation = {
   __typename: "User";
   client_id: string;
   email: string;
-  first_name?: string | null;
-  last_name?: string | null;
+  secret_key: string;
+  username?: string | null;
 };
 
 export type GetSpotifyAccessTokenMutation = {
@@ -91,8 +93,16 @@ export type GetUserByIdQuery = {
   __typename: "User";
   client_id: string;
   email: string;
-  first_name?: string | null;
-  last_name?: string | null;
+  secret_key: string;
+  username?: string | null;
+};
+
+export type GetUserByEmailQuery = {
+  __typename: "User";
+  client_id: string;
+  email: string;
+  secret_key: string;
+  username?: string | null;
 };
 
 export type GetSpotifyAuthQuery = {
@@ -109,22 +119,21 @@ export type GetLyricsQuery = {
   providedIn: "root"
 })
 export class APIService {
-  async Signup(clientId: string, email: string): Promise<SignupMutation> {
-    const statement = `mutation Signup($clientId: String!, $email: String!) {
-        signup(clientId: $clientId, email: $email) {
+  async Signup(email: string): Promise<SignupMutation> {
+    const statement = `mutation Signup($email: String!) {
+        signup(email: $email) {
           __typename
           user {
             __typename
             client_id
             email
-            first_name
-            last_name
+            secret_key
+            username
           }
           token
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      clientId,
       email
     };
     const response = (await API.graphql(
@@ -136,6 +145,13 @@ export class APIService {
     const statement = `mutation Login($clientId: String!) {
         login(clientId: $clientId) {
           __typename
+          user {
+            __typename
+            client_id
+            email
+            secret_key
+            username
+          }
           token
         }
       }`;
@@ -156,8 +172,8 @@ export class APIService {
           __typename
           client_id
           email
-          first_name
-          last_name
+          secret_key
+          username
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -202,8 +218,8 @@ export class APIService {
           __typename
           client_id
           email
-          first_name
-          last_name
+          secret_key
+          username
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -213,6 +229,24 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <GetUserByIdQuery>response.data.getUserById;
+  }
+  async GetUserByEmail(email: string): Promise<GetUserByEmailQuery> {
+    const statement = `query GetUserByEmail($email: String!) {
+        getUserByEmail(email: $email) {
+          __typename
+          client_id
+          email
+          secret_key
+          username
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      email
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetUserByEmailQuery>response.data.getUserByEmail;
   }
   async GetSpotifyAuth(redirectUri: string): Promise<GetSpotifyAuthQuery> {
     const statement = `query GetSpotifyAuth($redirectUri: String!) {

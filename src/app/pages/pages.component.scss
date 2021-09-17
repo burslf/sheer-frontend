@@ -1,6 +1,8 @@
 @import "../../styles.scss";
 
 .sidenav-container {
+  transition:ease-in-out 0.3s;
+
   width: 100%;
   height: 100%;
   background-color: $accent;
@@ -13,16 +15,16 @@
     display: none;
   }
   & .sidenav {
-    background-color: $primary;
+    background-color: $accent;
+    // border-right: 1px solid $primary !important;
     color: $primary;
     border: none;
     width: 20%;
-    max-width: 240px;
+    max-width: 200px;
     min-width: 160px;
     // height: 100%;
   }
   & .content {
-    background-color: $accent;
     // height: 100%;
     position: relative;
     & .container {
@@ -31,7 +33,20 @@
       width: 100%;
     }
   }
+  &.light-mode{
+      background-color: #6390bb !important;
+      position: relative;
+      & * {
+        box-sizing: border-box;
+        color: $accent !important;
+      }
+      & .sidenav {
+        background-color: #6390bb !important;
+      }
+    }
+
 }
+
 
 // ::ng-deep .mat-drawer-inner-container {
 //   overflow: hidden !important;

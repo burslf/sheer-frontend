@@ -16,9 +16,12 @@ export class AuthService {
   getUserById(clientId: string) {
     return this.api.GetUserById(clientId);
   }
+  getUserByEmail(email: string) {
+    return this.api.GetUserByEmail(email);
+  }
 
-  signup(clientId: string, email: string) {
-    return this.api.Signup(clientId, email);
+  signup(email: string) {
+    return this.api.Signup(email);
   }
   getLyrics(artist:string, title:string) {
     return this.api.GetLyrics(artist, title)

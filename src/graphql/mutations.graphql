@@ -4,8 +4,8 @@ mutation Signup($clientId: String!, $email: String!) {
     user {
       client_id
       email
-      first_name
-      last_name
+      secret_key
+      username
     }
     token
   }
@@ -19,8 +19,8 @@ mutation UpdateUser($clientId: String!, $payload: String!) {
   updateUser(clientId: $clientId, payload: $payload) {
     client_id
     email
-    first_name
-    last_name
+    secret_key
+    username
   }
 }
 mutation GetSpotifyAccessToken($code: String!, $redirectUri: String!) {

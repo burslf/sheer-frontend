@@ -23,6 +23,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { PlaylistsComponent } from './pages/playlists/playlists.component';
+import { AuthLoginComponent } from './pages/auth-login/auth-login.component';
+import { AuthGuardService } from './services/auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { PlaylistsComponent } from './pages/playlists/playlists.component';
     AuthCloseAPIComponent,
     PlaylistComponent,
     PlaylistsComponent,
+    AuthLoginComponent,
   ],
   imports: [
     AppMaterialModule,
@@ -56,7 +59,7 @@ import { PlaylistsComponent } from './pages/playlists/playlists.component';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [SidenavService, ContextService],
+  providers: [SidenavService, ContextService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

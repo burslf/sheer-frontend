@@ -17,12 +17,8 @@ interface Menu {
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  public menu: Menu[] = [
-    {name: 'Home', path: '', class:''},
-    {name: 'Playlists', path: 'playlists', class:'selected'},
-    {name: 'Login', path: 'login', class:''},
-    
-  ]
+  public menu: Menu[] = []
+  user:any = null
   isMobile!: boolean;
 
   constructor(private sidenav: SidenavService, private context:ContextService,private router: Router, private cookie:CookieService) { 
@@ -30,6 +26,12 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.context.user.subscribe(r => {
+      this.user = r
+    })
+    this.context.menu.subscribe(r => {
+        this.menu = r
+    })
   }
 
   toggleSidenav() {
@@ -37,30 +39,18 @@ export class SidenavComponent implements OnInit {
   }
   
   logout() {
-    Auth.signOut()
-    .then(r => {
-      this.cookie.delete('access_token')
-      this.cookie.delete('code')
       this.context.setSpotify(false)
-      this.router.navigate(['/'])
+      this.context.setUser(null)
+      this.cookie.delete('user', '/')
+      this.cookie.delete('access_token', '/')
+      this.cookie.delete('code', '/')
       if(this.isMobile) {
         this.toggleSidenav()
       }
-      
-    })
-    .catch(e => console.log(e))
-  }
-
-  handleSelect(name:any) {
-    if(this.isMobile) {
-      this.toggleSidenav()
+      this.router.navigate(['/login'])
     }
-    this.menu.forEach(m => m.class = '')
-    this.menu.forEach(m => {
-      if(m.name == name.name) {
-        m.class = 'selected'
-      }
-    })
-    this.router.navigate(['/'+name.path])
+
+  handleSelect(name:string) {
+    this.router.navigate(['/' + name])
   }
 }

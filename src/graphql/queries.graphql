@@ -3,8 +3,16 @@ query GetUserById($clientId: ID!) {
   getUserById(clientId: $clientId) {
     client_id
     email
-    first_name
-    last_name
+    secret_key
+    username
+  }
+}
+query GetUserByEmail($email: String!) {
+  getUserByEmail(email: $email) {
+    client_id
+    email
+    secret_key
+    username
   }
 }
 query GetSpotifyAuth($redirectUri: String!) {

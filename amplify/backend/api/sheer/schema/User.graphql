@@ -4,8 +4,8 @@ type User
   @key(name: "email", fields: ["email"]) {
   client_id: ID!
   email: String!
-  first_name: String
-  last_name: String
+  secret_key: String!
+  username: String
 }
 
 type SignupResponse 
@@ -16,5 +16,6 @@ type SignupResponse
 
 type LoginResponse
 {
+  user: User!,
   token: String!
 }

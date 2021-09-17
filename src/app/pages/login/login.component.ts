@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if(this.cookie.get('user')) {
+      this.router.navigate(['/'])
+    }
   }
   
   onSubmit() {

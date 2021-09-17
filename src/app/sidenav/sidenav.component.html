@@ -4,18 +4,19 @@
   </div>
   <div class="menu-content">
     <ul class="list">
-        <li class="{{name.class}}" *ngFor="let name of menu" (click)="handleSelect(name)">
+        <li class="{{name.class}}" *ngFor="let name of menu" (click)="handleSelect(name.path)">
           <div class="name" >
             {{name.name}}
             <mat-icon>chevron_right</mat-icon>
 
           </div>
         </li>
-        <li >
-          <div class="name" (click)="logout()">
+        <li *ngIf="user" (click)="logout()" >
+          <div class="name">
             Logout
           </div>
         </li>
+        
     </ul>
   </div>
 </div>

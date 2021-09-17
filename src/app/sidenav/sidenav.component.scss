@@ -40,10 +40,10 @@
                 // color: #ffffff;
                 font-weight: 700;
                 padding: 12px;
-                border-bottom: 1px solid $primary;
+                // border-bottom: 1px solid $primary;
                 cursor: pointer;
                 &.selected {
-                    background-color: $primary;
+                    // background-color: $primary;
                     color: white;
                 }
                 & .name {
@@ -54,6 +54,11 @@
                     justify-content: space-between;
                     margin: 0px 6px;
                 }
+            &:hover{
+                transition: ease-in 0.2s;
+                background-color: mat-color($app-primary, 700);
+
+            }
             }
         }
     }

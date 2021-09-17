@@ -1,12 +1,3 @@
-<div *ngIf="token" class="logged-in">
-  <h3>You are logged in</h3>
-  <div class="buttons">
-    <button mat-stroked-button color="primary"  routerLink="/">Go back</button>
-    <button mat-stroked-button color="primary" routerLink="/admin">Dashboard</button>
-    <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
-  </div>
-</div>
-
 <div class="form-container">
   <form
     *ngIf="!token"
@@ -14,7 +5,7 @@
     (ngSubmit)="onSubmit()"
     class="login-form"
   >
-    <h1 class="login-title">CONNEXION</h1>
+    <h1 class="login-title" [ngStyle]="{'text-align':'center'}">Log into your account to start using the app</h1>
     <mat-form-field appearance="outline">
       <input
         type="email"
@@ -41,13 +32,13 @@
     <button mat-raised-button color="primary" class="submit-btn" type="submit">
       SIGN IN
     </button>
-    <button mat-button type="button" (click)="loginWithGoogle()">
-      <div class="google-icon">
-        <img src="https://img.icons8.com/fluent/48/000000/google-logo.png"/>      </div>
-    </button>
     <a class="swap-link" color="primary" mat-raised-button routerLink="/register"
-      >No account? Sign up now</a
-    >
+      >No account? Sign up now</a>
+      <p>or login with</p>
+      <button mat-button type="button" (click)="loginWithGoogle()">
+        <div class="google-icon">
+          <img src="https://img.icons8.com/fluent/48/000000/google-logo.png"/>      </div>
+      </button>
   </form>
 </div>
 

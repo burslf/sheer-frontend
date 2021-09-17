@@ -6,6 +6,7 @@ import { APIService } from 'src/app/API.service';
 import { ContextService } from 'src/app/services/context.service';
 import { environment } from '../../../environments/environment';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { Auth } from '@aws-amplify/auth'
 
 const SPOTIFY_API = 'https://api.spotify.com/v1/';
 const redirectUri = environment.api!;
@@ -33,7 +34,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.context.spotifyConnect.subscribe((r) => {
-      console.log(r)
       this.spotifyConnect = r
     });
     if (this.accessToken) {

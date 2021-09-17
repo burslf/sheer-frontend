@@ -4,18 +4,19 @@ const userTable = process.env.USERS_DB
 
 const getUserById = async (event) => {
     const { arguments } = event;
-    const { clientId } = arguments;
+    const { email } = arguments;
     const params = {
         TableName: userTable,
-        Key: {"client_id" : clientId}
-    }
+        IndexName: 'email',
+        KeyConditionExpression: 'email = :email',
+        ExpressionAttributeValues: {':email' : email}
+        }
     try {
         const { Item } = await docClient.get(params).promise()
-        if (Item) return Item
-        else throw Error("Couldn't find user")
+        return Item
     }catch (err) {
-        console.log(err)
-        return err
+        throw Error("Couldn't find user")
+
     }
 }
 

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container" autosize>
+<mat-sidenav-container [ngClass]="{'light-mode' : themeMode.light}" class="sidenav-container" autosize>
   <mat-sidenav opened="isMobile" #sidenav class="sidenav">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
