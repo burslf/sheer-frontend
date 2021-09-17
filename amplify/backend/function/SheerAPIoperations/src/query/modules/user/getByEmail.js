@@ -2,6 +2,7 @@ const AWS = require('aws-sdk')
 const docClient = new AWS.DynamoDB.DocumentClient()
 const userTable = process.env.USER_DB
 const { paramsUserEmail } = require('../../../utils/params/UserEmail')
+
 const getUserById = async (event) => {
     const { arguments } = event;
     const { email } = arguments;

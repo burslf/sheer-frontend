@@ -15,7 +15,7 @@
       "function": {
         "SheerAPIoperations": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
-          "s3Key": "amplify-builds/SheerAPIoperations-485330694d4168537474-build.zip"
+          "s3Key": "amplify-builds/SheerAPIoperations-67515a3242494730432b-build.zip"
         },
         "SheerAPIoperationLayer": {
           "deploymentBucketName": "amplify-sheer-staging-144508-deployment",
