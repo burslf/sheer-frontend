@@ -64,7 +64,13 @@ export type SignupMutation = {
 
 export type LoginMutation = {
   __typename: "LoginResponse";
-  user: User;
+  user: {
+    __typename: "User";
+    client_id: string;
+    email: string;
+    secret_key: string;
+    username?: string | null;
+  };
   token: string;
 };
 

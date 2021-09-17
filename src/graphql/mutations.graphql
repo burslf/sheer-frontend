@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-mutation Signup($clientId: String!, $email: String!) {
-  signup(clientId: $clientId, email: $email) {
+mutation Signup($email: String!) {
+  signup(email: $email) {
     user {
       client_id
       email
@@ -12,6 +12,12 @@ mutation Signup($clientId: String!, $email: String!) {
 }
 mutation Login($clientId: String!) {
   login(clientId: $clientId) {
+    user {
+      client_id
+      email
+      secret_key
+      username
+    }
     token
   }
 }
